@@ -86,7 +86,7 @@ if !exists("*PasteURLTitle")
 endif
 
 command! PasteURLTitle call PasteURLTitle()
-map <leader>pt :PasteURLTitle<CR>
+noremap <leader>pt :PasteURLTitle<CR>
 
 endif " endif has('ruby')
 
@@ -105,7 +105,7 @@ function! QuickSpellingFix()
 endfunction
 
 command! QuickSpellingFix call QuickSpellingFix()
-nmap <silent> <leader>z :QuickSpellingFix<CR>
+nnoremap <silent> <leader>z :QuickSpellingFix<CR>
 
 " ---------------
 " Convert Ruby 1.8 hash rockets to 1.9 JSON style hashes.
@@ -131,8 +131,12 @@ function! Preserve(command)
   let @/=_s
   call cursor(l, c)
 endfunction
-"strip all trailing white space
-command! StripTrailingWhiteSpace :call Preserve("%s/\\s\\+$//e")<CR>
+function! StripTrailingWhiteSpaceAndSave()
+  :call Preserve("%s/\\s\\+$//e")<CR>
+  :write
+endfunction
+command! StripTrailingWhiteSpaceAndSave :call StripTrailingWhiteSpaceAndSave()<CR>
+nnoremap <silent>stw :silent! StripTrailingWhiteSpaceAndSave<CR>
 
 " ---------------
 " Paste using Paste Mode
@@ -151,7 +155,7 @@ function! PasteWithPasteMode()
 endfunction
 
 command! PasteWithPasteMode call PasteWithPasteMode()
-nmap <silent> <leader>p :PasteWithPasteMode<CR>
+nnoremap <silent> <leader>p :PasteWithPasteMode<CR>
 
 " ---------------
 " Write Buffer
@@ -167,4 +171,33 @@ function WriteBuffer()
   endif
 endfunction
 
-noremap <silent> <enter> :call WriteBuffer()<CR>
+" Clear the search buffer when hitting return
+" Idea for MapCR from http://git.io/pt8kjA
+function! MapCR()
+  nnoremap <silent> <enter> :call WriteBuffer()<CR>
+endfunction
+call MapCR()
+
+" ---------------
+" Make a scratch buffer with all of the leader keybindings.
+"
+" Adapted from http://ctoomey.com/posts/an-incremental-approach-to-vim/
+" ---------------
+function! ListLeaders()
+  silent! redir @b
+  silent! nmap <LEADER>
+  silent! redir END
+  silent! new
+  silent! set buftype=nofile
+  silent! set bufhidden=hide
+  silent! setlocal noswapfile
+  silent! put! b
+  silent! g/^s*$/d
+  silent! %s/^.*,//
+  silent! normal ggVg
+  silent! sort
+  silent! let lines = getline(1,"$")
+  silent! normal <esc>
+endfunction
+
+command! ListLeaders :call ListLeaders()

@@ -7,16 +7,22 @@
 " ---------------
 set background=dark
 colorscheme jellybeans
+" Force 256 color mode if available
+if $TERM =~ "-256color"
+   set t_Co=256
+endif
 
 " -----------------------------
-" Backups, Tmp Files, and Undo
+" File Locations
 " -----------------------------
-set backup
 set backupdir=~/.vim/.backup
 set directory=~/.vim/.tmp
+set spellfile=~/.vim/spell/custom.en.utf-8.add
 " Persistent Undo
-set undofile
-set undodir=~/.vim/.undo
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.vim/.undo
+endif
 
 " ---------------
 " UI
@@ -44,6 +50,7 @@ endif
 " Behaviors
 " ---------------
 syntax enable
+set backup             " Turn on backups
 set autoread           " Automatically reload changes if detected
 set wildmenu           " Turn on WiLd menu
 set hidden             " Change buffer - without saving
@@ -58,12 +65,14 @@ set formatoptions=crql
 set iskeyword+=\$,-   " Add extra characters that are valid parts of variables
 set nostartofline      " Don't go to the start of the line after some commands
 set scrolloff=3        " Keep three lines below the last line when scrolling
+set gdefault           " this makes search/replace global by default
+set switchbuf=useopen  " Switch to an existing buffer if one exists
 
 " ---------------
 " Text Format
 " ---------------
 set tabstop=2
-set backspace=2  " Delete everything with backspace
+set backspace=indent,eol,start " Delete everything with backspace
 set shiftwidth=2 " Tabs under smart indent
 set cindent
 set autoindent
@@ -75,8 +84,8 @@ set expandtab
 " ---------------
 set ignorecase " Case insensitive search
 set smartcase  " Non-case sensitive search
-set incsearch
-set hlsearch
+set incsearch  " Incremental search
+set hlsearch   " Highlight search results
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,
   \.sass-cache,*.class,*.scssc,*.cssc,sprockets%*,*.lessc
 
@@ -93,8 +102,8 @@ set list
 
 " Reset the listchars
 set listchars=""
-" a tab should display as "  ", trailing whitespace as "."
-set listchars=tab:\ \  " Indentended trailing whitespace
+" make tabs visible
+set listchars=tab:▸▸
 " show trailing spaces as dots
 set listchars+=trail:.
 " The character to show in the last column when wrap is off and the line
