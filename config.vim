@@ -128,3 +128,11 @@ set mouse=a    " Mouse in all modes
 
 " Better complete options to speed it up
 set complete=.,w,b,u,U
+
+
+" ---------------
+" Environment specific
+" ---------------
+
+if filereadable("extra.vim")
+  source extra.vim
