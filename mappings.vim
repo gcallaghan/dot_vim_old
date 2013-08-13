@@ -123,16 +123,28 @@ nnoremap <leader>h *<C-O>
 
 " Toggle spelling mode with ,s
 nnoremap <silent> <leader>s :set spell!<CR>
-" Edit vimrc with ,v
-nnoremap <silent> <leader>v :e ~/.vim/<CR>
+
+" Begin to edit any file in .vim directory
+nnoremap <leader>v :e ~/.vim/
+
 " Quickly switch to last buffer
 nnoremap <leader>, :e#<CR>
 
 " Underline the current line with '-'
-nnoremap <silent> <leader>ul :t.\|s/./-/g\|:nohls<cr>
+nnoremap <silent> <leader>ul :t.\|s/./-/\|:nohls<cr>
 
 " Underline the current line with '='
-nnoremap <silent> <leader>uul :t.\|s/./=/g\|:nohls<cr>
+nnoremap <silent> <leader>uul :t.\|s/./=/\|:nohls<cr>
+
+" Surround the commented line with lines.
+"
+" Example:
+"          # Test 123
+"          becomes
+"          # --------
+"          # Test 123
+"          # --------
+nnoremap <silent> <leader>cul :normal "lyy"lpwv$r-^"lyyk"lP<cr>
 
 " Format the entire file
 nnoremap <leader>fef mx=ggG='x
