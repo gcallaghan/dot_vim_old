@@ -1,0 +1,8 @@
+/bundle
+/sessions
+.DS_Store
+
+/.netrwhist
+/spell/custom.en.utf-8.add.spl
+
+/extra.vim
