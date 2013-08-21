@@ -136,3 +136,4 @@ set complete=.,w,b,u,U
 
 if filereadable("extra.vim")
   source extra.vim
+endif
