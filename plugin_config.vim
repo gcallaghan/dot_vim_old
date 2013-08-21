@@ -109,9 +109,10 @@ nnoremap <leader>m :CtrlPMRUFiles<CR>
 " ---------------
 " airline
 " ---------------
-let g:airline_theme='powerlineish'
+let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts=1
 let g:airline_detect_modified=1
+let g:airline#extensions#whitespace#enabled = 1
 let g:airline_mode_map = {
       \ 'n'  : 'N',
       \ 'i'  : 'I',
@@ -121,6 +122,8 @@ let g:airline_mode_map = {
       \ 'c'  : 'CMD',
       \ '' : 'VB',
       \ }
+let g:airline_section_b = '%{substitute(getcwd(), ".*\/", "", "g")} '
+let g:airline_section_x = '#%{expand("#:t")} | %{&filetype}'
 
 " ---------------
 " jellybeans.vim colorscheme tweaks
@@ -246,8 +249,6 @@ let g:togglecursor_leave='line'
 " ---------------
 " rails.vim
 " ---------------
-command! REmigrate :call VimuxRunCommand("rake db:drop db:create db:migrate test:prepare")
-command! Migrate :call VimuxRunCommand("rake db:migrate test:prepare")
 nnoremap <leader>a <CR>
 nnoremap <leader>r   :R
 nnoremap <leader>rmm :Rmodel<space>
@@ -262,6 +263,7 @@ nnoremap <leader>rvv :Rview<space>
 nnoremap <leader>ree :Renvironment<space>
 nnoremap <leader>rhh :Rhelper<space>
 nnoremap <leader>rii :Rinitializer<space>
+nnoremap <leader>rjj :Rjavascript<space>
 
 nnoremap <leader>rss :Rspec<space>
 nnoremap <leader>rsm :Rspec models/
@@ -356,6 +358,13 @@ nnoremap <leader>A :call VimuxRunCommand("spring rspec")<CR>
 nnoremap <leader>cu :call VimuxRunCommand("spring cucumber")<CR>
 nnoremap <leader>ca :call VimuxRunCommand("spring cucumber; spring rspec")<CR>
 nnoremap <leader>cm :VimuxPromptCommand<CR>
+function WriteAndVimuxRunLastCommand()
+  :silent! write
+  :call VimuxRunLastCommand()
+endfunction
+nnoremap <leader>w :call WriteAndVimuxRunLastCommand()<CR>
+command! REmigrate :call VimuxRunCommand("rake db:drop db:create db:migrate test:prepare")
+command! Migrate :call VimuxRunCommand("rake db:migrate test:prepare")
 
 " ---------------
 " Turbux
