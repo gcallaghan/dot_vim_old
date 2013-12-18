@@ -59,8 +59,9 @@ set cf                 " Enable error files & error jumping.
 set clipboard+=unnamed " Yanks go on clipboard instead.
 set autowrite          " Writes on make/shell commands
 set timeoutlen=450     " Time to wait for a command (after leader for example).
-set nofoldenable       " Disable folding entirely.
-set foldlevelstart=99  " I really don't like folds.
+"set nofoldenable       " Disable folding entirely.
+"set foldlevelstart=99  " I really don't like folds.
+set foldlevelstart=3
 set formatoptions=crql
 set iskeyword+=\$,-   " Add extra characters that are valid parts of variables
 set nostartofline      " Don't go to the start of the line after some commands
@@ -77,9 +78,9 @@ nnoremap <Down> <C-w>j
 " ---------------
 " Text Format
 " ---------------
-set tabstop=2
+set tabstop=4
 set backspace=indent,eol,start " Delete everything with backspace
-set shiftwidth=2 " Tabs under smart indent
+set shiftwidth=4 " Tabs under smart indent
 set cindent
 set autoindent
 set smarttab
@@ -93,7 +94,8 @@ set smartcase  " Non-case sensitive search
 set incsearch  " Incremental search
 set hlsearch   " Highlight search results
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,
-  \.sass-cache,*.class,*.scssc,*.cssc,sprockets%*,*.lessc
+  \.sass-cache,*.class,*.scssc,*.cssc,sprockets%*,*.lessc,*/node_modules/*,
+  \rake-pipeline-*
 
 " ---------------
 " Visual
