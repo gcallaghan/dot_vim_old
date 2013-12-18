@@ -17,8 +17,6 @@ Bundle 'gmarik/vundle'
 
 " Navigation
 Bundle 'ZoomWin'
-" This fork is required due to remapping ; to :
-Bundle 'christoomey/vim-space'
 Bundle 'kien/ctrlp.vim'
 Bundle 'JazzCore/ctrlp-cmatcher'
 " UI Additions
@@ -56,14 +54,20 @@ Bundle 'SirVer/ultisnips'
 Bundle 'g3orge/vim-voogle'
 Bundle 'benmills/vimux'
 Bundle 'jgdavey/vim-turbux'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'dsawardekar/portkey'
+Bundle 'dsawardekar/ember.vim'
+Bundle 'rizzatti/dash.vim'
 " Automatic Helpers
-Bundle 'IndexedSearch'
+Bundle 'osyo-manga/vim-anzu'
 Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'mutewinter/vim-autoreadwatch'
 " Language Additions
 "   Ruby
 Bundle 'vim-ruby/vim-ruby'
@@ -94,6 +98,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'wavded/vim-stylus'
 Bundle 'tpope/vim-cucumber'
 Bundle 'chrisbra/csv.vim'
+Bundle 'digitaltoad/vim-jade'
 " MatchIt
 Bundle 'matchit.zip'
 Bundle 'kana/vim-textobj-user'
@@ -103,3 +108,4 @@ Bundle 'L9'
 Bundle 'tpope/vim-repeat'
 Bundle 'mattn/webapi-vim'
 Bundle 'xolox/vim-misc'
+Bundle 'rizzatti/funcoo.vim'
