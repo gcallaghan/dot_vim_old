@@ -6,7 +6,7 @@
 " Color
 " ---------------
 set background=dark
-colorscheme jellybeans
+colorscheme solarized
 " Force 256 color mode if available
 if $TERM =~ "-256color"
    set t_Co=256
@@ -59,8 +59,9 @@ set cf                 " Enable error files & error jumping.
 set clipboard+=unnamed " Yanks go on clipboard instead.
 set autowrite          " Writes on make/shell commands
 set timeoutlen=450     " Time to wait for a command (after leader for example).
-set nofoldenable       " Disable folding entirely.
-set foldlevelstart=99  " I really don't like folds.
+"set nofoldenable       " Disable folding entirely.
+"set foldlevelstart=99  " I really don't like folds.
+set foldlevelstart=3
 set formatoptions=crql
 set iskeyword+=\$,-   " Add extra characters that are valid parts of variables
 set nostartofline      " Don't go to the start of the line after some commands
@@ -68,12 +69,18 @@ set scrolloff=3        " Keep three lines below the last line when scrolling
 set gdefault           " this makes search/replace global by default
 set switchbuf=useopen  " Switch to an existing buffer if one exists
 
+" Map arrows to switch splits"
+nnoremap <Right> <C-w>l
+nnoremap <Left> <C-w>h
+nnoremap <Up> <C-w>k
+nnoremap <Down> <C-w>j
+
 " ---------------
 " Text Format
 " ---------------
-set tabstop=2
+set tabstop=4
 set backspace=indent,eol,start " Delete everything with backspace
-set shiftwidth=2 " Tabs under smart indent
+set shiftwidth=4 " Tabs under smart indent
 set cindent
 set autoindent
 set smarttab
@@ -136,3 +143,4 @@ set complete=.,w,b,u,U
 
 if filereadable("extra.vim")
   source extra.vim
+endif
