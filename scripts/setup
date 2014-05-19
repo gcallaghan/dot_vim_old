@@ -23,7 +23,7 @@ echo ''
 
 info 'Installing Vundle'
 info '-----------------'
-git clone http://github.com/gmarik/vundle.git bundle/vundle
+git clone http://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
 
 info 'Setting up Symlinks'
 info '--------------'
