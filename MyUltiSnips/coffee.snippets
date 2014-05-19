@@ -1,10 +1,4 @@
-snippet property "Create a computed property"
-(->
-  $0
-).property('${2:propertyName}')
-endsnippet
-
-snippet p "Create a computed property (p)"
+snippet p "Create a computed property"
 (->
   $0
 ).property('${2:propertyName}')
@@ -16,16 +10,36 @@ observes${1:observerName}: (->
 ).observes('${2:observerName}')
 endsnippet
 
-snippet get "Getter" i
+snippet o "Create an observer"
+observes${1:observerName}: (->
+  $0
+).observes('${2:observerName}')
+endsnippet
+
+snippet on "Create an 'on' function"
+(->
+  $0
+).on('${2:propertyName}')
+endsnippet
+
+snippet g "Getter" i
 get('${1:propertyName}')$0
 endsnippet
 
-snippet g "Getter (g)" i
-get('${1:propertyName}')$0
+snippet gv "Visual this getter" i
+@get('${VISUAL}')$0
 endsnippet
 
-snippet set "Setter"
-set('${1:propertyName}', ${2:value})
+snippet @ga "Get this and assign" i
+$1 = @get('${1:propertyName}')$0
+endsnippet
+
+snippet ag "Get this and assign" i
+$1 = @get('${1:propertyName}')$0
+endsnippet
+
+snippet @_s "Super with arguments" i
+@_super(${1:arguments...})
 endsnippet
 
 snippet s "Setter (s)"
@@ -50,6 +64,10 @@ endsnippet
 
 snippet ele "Ember error log"
 Ember.Logger.error ${1:value}
+endsnippet
+
+snippet ale "App error log"
+App.Logger.error ${1:value}
 endsnippet
 
 snippet map "Map" w

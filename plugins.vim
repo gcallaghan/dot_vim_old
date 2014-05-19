@@ -6,14 +6,14 @@
 " Vundle
 " ---------------
 command! ReloadVundle source ~/.vim/vundle.vim
-function BundleReloadAndRun(command)
+function PluginReloadAndRun(command)
   :ReloadVundle
   execute a:command
 endfunction
 
-nnoremap <Leader>bi :call BundleReloadAndRun("BundleInstall")<CR>
-nnoremap <Leader>bu :call BundleReloadAndRun("BundleInstall!")<CR>
-nnoremap <Leader>bc :call BundleReloadAndRun("BundleClean")<CR>
+nnoremap <Leader>pi :call PluginReloadAndRun("PluginInstall")<CR>
+nnoremap <Leader>pu :call PluginReloadAndRun("PluginInstall!")<CR>
+nnoremap <Leader>pc :call PluginReloadAndRun("PluginClean")<CR>
 
 " ---------------
 " space.vim
@@ -75,6 +75,7 @@ vnoremap <Leader>t, :Tabularize comma<CR>
 " Fugitive
 " ---------------
 nnoremap <Leader>gc :Gcommit -v<CR>
+nnoremap <Leader>gca :Gcommit -a -v<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gp :Git push<CR>
@@ -102,7 +103,6 @@ let g:ctrlp_map = ''
 
 " Ensure max height isn't too large. (for performance)
 let g:ctrlp_max_height = 10
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 " Fix fix new windows opening in split from startify
 let g:ctrlp_reuse_window = 'startify'
 let g:ctrlp_mruf_max = 350
@@ -113,6 +113,16 @@ nnoremap <leader>t :CtrlPRoot<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>u :CtrlPCurFile<CR>
 nnoremap <leader>m :CtrlPMRUFiles<CR>
+
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  " HatTip: http://robots.thoughtbot.com/faster-grepping-in-vim and
+  " @ethanmuller
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " ---------------
 " airline
@@ -246,10 +256,10 @@ let g:signify_sign_overwrite = 0
 " vim-startify
 " ---------------
 let g:startify_list_order = [
-        \ ['   Recent'],
-        \ 'files',
         \ ['   Last modified'],
         \ 'dir',
+        \ ['   Recent'],
+        \ 'files',
         \ ]
 let g:startify_skiplist = [
             \ 'COMMIT_EDITMSG',
@@ -275,6 +285,8 @@ autocmd VimEnter *
             \ endif
 " Keep NERDTree from opening a split when startify is open
 autocmd FileType startify setlocal buftype=
+
+let g:startify_recursive_dir = 1
 
 " ---------------
 " vim-togglecursor

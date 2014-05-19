@@ -108,9 +108,6 @@ nnoremap <leader>h *<C-O>
 " Toggle spelling mode with ,s
 nnoremap <silent> <leader>s :set spell!<CR>
 
-" Begin to edit any file in .vim directory
-nnoremap <leader>v :e ~/.vim/
-
 " Quickly switch to last buffer
 nnoremap <leader>, :e#<CR>
 
@@ -162,3 +159,6 @@ vnoremap K k
 
 " Toggle paste mode with F5
 nnoremap <silent> <F5> :set paste!<CR>
+
+" Insert date
+iabbrev ddate <C-R>=strftime("%Y-%m-%d")<CR>
